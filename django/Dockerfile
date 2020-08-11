@@ -1,8 +1,6 @@
 FROM python:3
 
-RUN ["mkdir", "/project"]
-
-WORKDIR /project
+WORKDIR /prj
 
 COPY requirements.txt ./
 
