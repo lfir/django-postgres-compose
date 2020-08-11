@@ -16,14 +16,12 @@ services:
     restart: always
     env_file:
       - ./django/django.env
+    command: python /prj/d0/manage.py runserver 0.0.0.0:8000
     ports:
-      - '8000'
+      - '8000:8000'
     volumes:
-      - ./django/src:/project:Z
-    depends_on:
-      - postgres
+      - ./django/src:/prj:Z
 
 
 volumes:
   pgdata:
-  pgadmin:
