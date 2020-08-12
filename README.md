@@ -23,7 +23,7 @@ docker exec -w /prj/projectName -it containerID python manage.py createsuperuser
 - Create a new Django project
 
 ```
-docker-compose run -w /prj/projectName --rm --u uid:gid django django-admin startproject projectName
+docker-compose run -w /prj --rm --u uid:gid django django-admin startproject projectName
 ```
 
 - Create migration file
