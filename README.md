@@ -1,14 +1,45 @@
 ## Development environment for Django projects that uses docker-compose and PostgreSQL.
 
-### Open psql shell (interactive shell)
+### Interactive shell commands
+- Open psql
+
+```
 docker exec -it containerID psql -U postgres
+```
 
-### Create a new Django project
-docker-compose run --rm --user uid:gid django sh -c 'cd /prj && django-admin startproject projectName'
+- Access Django's shell
 
-### Open Django shell / run createsuperuser (interactive shell)
-docker exec -it containerID sh -c 'cd /prj/projectName && python manage.py shell'
+```
+docker exec -w /prj/projectName -it containerID python manage.py shell
+```
 
-### Create migration file / run migrate or startapp (non-interactive)
-docker exec containerID sh -c 'cd /prj/projectName && python manage.py makemigrations appName'
+- Create admin user
 
+```
+docker exec -w /prj/projectName -it containerID python manage.py createsuperuser
+```
+
+### Non-interactive shell commands
+- Create a new Django project
+
+```
+docker-compose run -w /prj/projectName --rm --u uid:gid django django-admin startproject projectName
+```
+
+- Create migration file
+
+```
+docker-compose run -w /prj/projectName --rm django python manage.py makemigrations appName
+```
+
+- Run migrate
+
+```
+docker-compose run -w /prj/projectName --rm django python manage.py migrate appName
+```
+
+- Run startapp
+
+```
+docker-compose run -w /prj/projectName --rm django python manage.py startapp appName
+```
